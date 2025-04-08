@@ -5158,4 +5158,28 @@ MHUR.exe+39E0A45: F3 0F 59 05 B7 02 CE 00  - mulss xmm0,[MHUR.exe+46C0D04]
       <Address>2D7B7C70000</Address>
     </SymbolEntry>
   </UserdefinedSymbols>
+  <LuaScript>PROCESS_NAME = 'MHUR.exe'
+--------
+-------- Auto Attach
+--------
+local autoAttachTimer = nil ---- variable to hold timer object
+local autoAttachTimerInterval = 1000 ---- Timer intervals are in milliseconds
+local autoAttachTimerTicks = 0 ---- variable to count number of times the timer has run
+local autoAttachTimerTickMax = 5000 ---- Set to zero to disable ticks max
+local function autoAttachTimer_tick(timer) ---- Timer tick call back
+        ---- Destroy timer if max ticks is reached
+	if autoAttachTimerTickMax &gt; 0 and autoAttachTimerTicks &gt;= autoAttachTimerTickMax then
+		timer.destroy()
+	end
+        ---- Check if process is running
+	if getProcessIDFromProcessName(PROCESS_NAME) ~= nil then
+		timer.destroy() ---- Destroy timer
+		openProcess(PROCESS_NAME) ---- Open the process
+	end
+	autoAttachTimerTicks = autoAttachTimerTicks + 1 ---- Increase ticks
+end
+autoAttachTimer = createTimer(getMainForm()) ---- Create timer with the main form as it's parent
+autoAttachTimer.Interval = autoAttachTimerInterval ---- Set timer interval
+autoAttachTimer.OnTimer = autoAttachTimer_tick ---- Set timer tick call back
+</LuaScript>
 </CheatTable>
