@@ -4752,6 +4752,17 @@ MHUR.exe+39E0A45: F3 0F 59 05 B7 02 CE 00  - mulss xmm0,[MHUR.exe+46C0D04]
                               <Address>[[[LocalPlayer]+30]+228]+8A8</Address>
                             </CheatEntry>
                             <CheatEntry>
+                              <ID>113953</ID>
+                              <Description>"Run While Downed (SET VALUE TO ON AND LOCK)"</Description>
+                              <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">8:On
+*:Off
+</DropDownList>
+                              <ShowAsSigned>0</ShowAsSigned>
+                              <Color>FFFF00</Color>
+                              <VariableType>Byte</VariableType>
+                              <Address>[[[LocalPlayer]+30]+228]+4F0</Address>
+                            </CheatEntry>
+                            <CheatEntry>
                               <ID>113993</ID>
                               <Description>"Force Use Any Left Click Skill"</Description>
                               <Options moHideChildren="1"/>
@@ -4842,6 +4853,16 @@ MHUR.exe+39E0A45: F3 0F 59 05 B7 02 CE 00  - mulss xmm0,[MHUR.exe+46C0D04]
                           <Color>00FFFF</Color>
                           <GroupHeader>1</GroupHeader>
                           <CheatEntries>
+                            <CheatEntry>
+                              <ID>113920</ID>
+                              <Description>"Attack+Movement Speed (1 = DEFAULT)"</Description>
+                              <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">1:Default
+</DropDownList>
+                              <ShowAsSigned>0</ShowAsSigned>
+                              <Color>FFFF00</Color>
+                              <VariableType>Float</VariableType>
+                              <Address>[[[[LocalPlayer]+30]+228]+280]+98</Address>
+                            </CheatEntry>
                             <CheatEntry>
                               <ID>113925</ID>
                               <Description>"Run Speed (HOLD SHIFT)"</Description>
