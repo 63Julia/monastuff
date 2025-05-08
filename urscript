@@ -4,6 +4,115 @@
     <UDF1 Class="TCEForm" Encoding="Ascii85">U6IRf.xH739Rtm,Bf3CUw?7S?3Q]%i!68E;*FMc4%a9zvGmae])}NkE=s:g.RukMony!2/I^v?@oZlFsa2DK^AsGikru9cZ:,(pNQniM0HUYZcsM-grg)Abt#xqUSrc8f$v7(E41Xofpvq^Eemn*Huc1j7{Gf9+wD*]y.^]R(%NYcqN4(/x^]D#CUdc05H^]7{.1HY%)dgT8c7V{^-,-{baqrlZk*YbVv)FPGr$a/(KK}7LAcaOPg#[V{R6+yBeeFB,Rx?N!I=,(@+s2To][MKEaeMetTu^P;!qZm1hjVNXkR]joBdyKAmS@{Atib)l[bbJ^VBOw!zwyR$ac^m*9qYDeV2W,?nP/PwyHoDY;Nh!-JX-IU;@E{klJzo?G1BPKBdoFf7p=v+/Tc]LHw[I)gBH?/xONydej?1lgltMl$0U#DU!B.K*tH*@=Ro7W$07-SsYBUh;E{uiJZ1*(KqPZ]Q+[hER2fc4MW,(+:p{,6d3Zvyi/sKum3;QjdHbUqV</UDF1>
   </Forms>
   <CheatEntries>
+  <CheatEntry>
+      <ID>1000</ID>
+      <Description>"[ Attacking Teammates Section ]"</Description>
+      <Options moHideChildren="0"/>
+      <Color>90EE90</Color>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1001</ID>
+          <Description>"Activate attacks on teammates"</Description>
+          <Color>228B22</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+{$lua}
+if syntaxcheck == false then
+  local disableEntry = getAddressList().getMemoryRecordByDescription('Disable attacks on teammates')
+  if disableEntry ~= nil then
+    disableEntry.Active = false
+  end
+end
+{$asm}
+
+aobScanModule(FriendlyFireHookOn, MHUR.exe, 0F B6 81 C4 03 00 00 C3)
+alloc(n_FriendlyFireOn, $1000, FriendlyFireHookOn)
+
+label(o_FriendlyFireOn r_FriendlyFireOn)
+label(FriendlyFirePtrOn)
+
+n_FriendlyFireOn:
+  mov [FriendlyFirePtrOn], rcx
+  mov byte ptr [rcx+000003C4], #1
+
+o_FriendlyFireOn:
+  movzx eax, byte ptr [rcx+000003C4]
+  jmp r_FriendlyFireOn
+
+FriendlyFirePtrOn:
+  dq 0
+
+FriendlyFireHookOn:
+  jmp n_FriendlyFireOn
+  db 90 90
+
+r_FriendlyFireOn:
+registersymbol(FriendlyFireHookOn FriendlyFirePtrOn)
+
+[DISABLE]
+
+FriendlyFireHookOn:
+  db 0F B6 81 C4 03 00 00
+
+unregistersymbol(FriendlyFireHookOn FriendlyFirePtrOn)
+dealloc(n_FriendlyFireOn)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1002</ID>
+          <Description>"Disable attacks on teammates"</Description>
+          <Color>FF69B4</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+{$lua}
+if syntaxcheck == false then
+  local enableEntry = getAddressList().getMemoryRecordByDescription('Activate attacks on teammates')
+  if enableEntry ~= nil then
+    enableEntry.Active = false
+  end
+end
+{$asm}
+
+aobScanModule(FriendlyFireHookOff, MHUR.exe, 0F B6 81 C4 03 00 00 C3)
+alloc(n_FriendlyFireOff, $1000, FriendlyFireHookOff)
+
+label(o_FriendlyFireOff r_FriendlyFireOff)
+label(FriendlyFirePtrOff)
+
+n_FriendlyFireOff:
+  mov [FriendlyFirePtrOff], rcx
+  mov byte ptr [rcx+000003C4], #0
+
+o_FriendlyFireOff:
+  movzx eax, byte ptr [rcx+000003C4]
+  jmp r_FriendlyFireOff
+
+FriendlyFirePtrOff:
+  dq 0
+
+FriendlyFireHookOff:
+  jmp n_FriendlyFireOff
+  db 90 90
+
+r_FriendlyFireOff:
+registersymbol(FriendlyFireHookOff FriendlyFirePtrOff)
+
+[DISABLE]
+
+FriendlyFireHookOff:
+  db 0F B6 81 C4 03 00 00
+
+unregistersymbol(FriendlyFireHookOff FriendlyFirePtrOff)
+dealloc(n_FriendlyFireOff)
+
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
     <CheatEntry>
       <ID>26312</ID>
       <Description>"UE Helper table, [Pour Debugging ᡣ𐭩]"</Description>
@@ -4752,6 +4861,17 @@ MHUR.exe+39E0A45: F3 0F 59 05 B7 02 CE 00  - mulss xmm0,[MHUR.exe+46C0D04]
                               <Address>[[[LocalPlayer]+30]+228]+8A8</Address>
                             </CheatEntry>
                             <CheatEntry>
+                              <ID>113953</ID>
+                              <Description>"Run While Downed (SET VALUE TO ON AND LOCK)"</Description>
+                              <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">8:On
+*:Off
+</DropDownList>
+                              <ShowAsSigned>0</ShowAsSigned>
+                              <Color>FFFF00</Color>
+                              <VariableType>Byte</VariableType>
+                              <Address>[[[LocalPlayer]+30]+228]+4F0</Address>
+                            </CheatEntry>
+                            <CheatEntry>
                               <ID>113993</ID>
                               <Description>"Force Use Any Left Click Skill"</Description>
                               <Options moHideChildren="1"/>
@@ -4842,6 +4962,16 @@ MHUR.exe+39E0A45: F3 0F 59 05 B7 02 CE 00  - mulss xmm0,[MHUR.exe+46C0D04]
                           <Color>00FFFF</Color>
                           <GroupHeader>1</GroupHeader>
                           <CheatEntries>
+                            <CheatEntry>
+                              <ID>113920</ID>
+                              <Description>"Attack+Movement Speed (1 = DEFAULT)"</Description>
+                              <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">1:Default
+</DropDownList>
+                              <ShowAsSigned>0</ShowAsSigned>
+                              <Color>FFFF00</Color>
+                              <VariableType>Float</VariableType>
+                              <Address>[[[[LocalPlayer]+30]+228]+280]+98</Address>
+                            </CheatEntry>
                             <CheatEntry>
                               <ID>113925</ID>
                               <Description>"Run Speed (HOLD SHIFT)"</Description>
