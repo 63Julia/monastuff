@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CheatTable CheatEngineTableVersion="46">
   <CheatEntries>
-  <CheatEntry>
+    <CheatEntry>
       <ID>113988</ID>
       <Description>"Mis à jour pour la Saison 11 Par La Mona! 🍃"</Description>
       <Color>FF69B4</Color>
@@ -57,7 +57,6 @@
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
-		 <Color>FFC0CB</Color>
           <ID>1010</ID>
           <Description>"Speed Multiplier (1 = Normal)"</Description>
           <DropDownList DescriptionOnly="1">1:Normal
@@ -67,6 +66,7 @@
           5:Ultra Fast
           10:Insane Speed
 </DropDownList>
+          <Color>FFC0CB</Color>
           <VariableType>Float</VariableType>
           <Address>[[[[LocalPlayer]+30]+228]+280]+98</Address>
         </CheatEntry>
@@ -81,7 +81,7 @@
         <CheatEntry>
           <ID>2010</ID>
           <Description>"Infinite Abilities"</Description>
-		   <Color>FFC0CB</Color>
+          <Color>FFC0CB</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[ENABLE]
  
@@ -116,12 +116,12 @@
         <CheatEntry>
           <ID>2030</ID>
           <Description>"Vitesse de rechargement"</Description>
-		   <Color>FFC0CB</Color>
           <DropDownList DescriptionOnly="1">1:Normal
           2:2x Faster
           5:5x Faster
           10:10x Faster
 </DropDownList>
+          <Color>FFC0CB</Color>
           <VariableType>Float</VariableType>
           <Address>[[[[LocalPlayer]+30]+228]+B80]+B4</Address>
         </CheatEntry>
@@ -136,7 +136,6 @@
         <CheatEntry>
           <ID>3010</ID>
           <Description>"Level de l'Alpha"</Description>
-		   <Color>FFC0CB</Color>
           <DropDownList DescriptionOnly="1">1:Level 1
           2:Level 2
           3:Level 3
@@ -147,13 +146,13 @@
           8:Level 8
           9:Level 9 (MAX)
 </DropDownList>
+          <Color>FFC0CB</Color>
           <VariableType>2 Bytes</VariableType>
           <Address>[[[[[[LocalPlayer]+30]+228]+280]+870]+F0]+10</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>3020</ID>
           <Description>"Level du Beta"</Description>
-		   <Color>FFC0CB</Color>
           <DropDownList DescriptionOnly="1">1:Level 1
           2:Level 2
           3:Level 3
@@ -164,13 +163,13 @@
           8:Level 8
           9:Level 9 (MAX)
 </DropDownList>
+          <Color>FFC0CB</Color>
           <VariableType>2 Bytes</VariableType>
           <Address>[[[[[[LocalPlayer]+30]+228]+280]+870]+F0]+28</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>3030</ID>
           <Description>"Level du Gamma"</Description>
-		   <Color>FFC0CB</Color>
           <DropDownList DescriptionOnly="1">1:Level 1
           2:Level 2
           3:Level 3
@@ -181,6 +180,7 @@
           8:Level 8
           9:Level 9 (MAX)
 </DropDownList>
+          <Color>FFC0CB</Color>
           <VariableType>2 Bytes</VariableType>
           <Address>[[[[[[LocalPlayer]+30]+228]+280]+870]+F0]+40</Address>
         </CheatEntry>
@@ -195,13 +195,13 @@
         <CheatEntry>
           <ID>4010</ID>
           <Description>"Plus Ultra Charge [Met à 100]"</Description>
-		   <Color>FFC0CB</Color>
           <DropDownList DescriptionOnly="1">0:Empty
           25:Quarter Full
           50:Half Full
           75:Three Quarters
           100:Full (Ready)
 </DropDownList>
+          <Color>FFC0CB</Color>
           <VariableType>Float</VariableType>
           <Address>[[[LocalPlayer]+30]+228]+8F8</Address>
           <Hotkeys>
@@ -217,10 +217,10 @@
         </CheatEntry>
         <CheatEntry>
           <ID>4020</ID>
-          <Description>"Run While Downed (Buggé) [Met à 540]"</Description>
-		   <Color>FFC0CB</Color>
+          <Description>"Run While Downed [Value à 100]"</Description>
+          <Color>FFC0CB</Color>
           <VariableType>Byte</VariableType>
-          <Address>[[[LocalPlayer]+30]+228]+50</Address>
+          <Address>[[[LocalPlayer]+30]+228]+540</Address>
           <Hotkeys>
             <Hotkey>
               <Action>Set Value</Action>
@@ -232,11 +232,19 @@
             </Hotkey>
           </Hotkeys>
         </CheatEntry>
+        <CheatEntry>
+          <ID>113989</ID>
+          <Description>"Team Id [Client Sided]"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+		  <Color>FFC0CB</Color>
+          <VariableType>4 Bytes</VariableType>
+          <Address>[[[LocalPlayer]+30]+228]+33A</Address>
+        </CheatEntry>
       </CheatEntries>
     </CheatEntry>
   </CheatEntries>
   <UserdefinedSymbols/>
-    <LuaScript>PROCESS_NAME = 'MHUR.exe'
+  <LuaScript>PROCESS_NAME = 'MHUR.exe'
 --------
 -------- Auto Attach
 --------
