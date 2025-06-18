@@ -238,7 +238,7 @@
           <ShowAsSigned>0</ShowAsSigned>
 		  <Color>FFC0CB</Color>
           <VariableType>4 Bytes</VariableType>
-          <Address>[[[LocalPlayer]+30]+228]+33A</Address>
+          <Address>[[[LocalPlayer]+30]+228]+333A</Address>
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
