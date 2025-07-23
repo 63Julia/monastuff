@@ -3,7 +3,7 @@
   <CheatEntries>
     <CheatEntry>
       <ID>113988</ID>
-      <Description>"Mis à jour pour la Saison 11 Par La Mona! 🍃"</Description>
+      <Description>"Mis à jour pour la Saison 12 Par La Mona! 🍃"</Description>
       <Color>FF69B4</Color>
       <GroupHeader>1</GroupHeader>
     </CheatEntry>
@@ -66,6 +66,7 @@
           5:Ultra Fast
           10:Insane Speed
 </DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
           <Color>FFC0CB</Color>
           <VariableType>Float</VariableType>
           <Address>[[[[LocalPlayer]+30]+228]+280]+98</Address>
@@ -121,9 +122,10 @@
           5:5x Faster
           10:10x Faster
 </DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
           <Color>FFC0CB</Color>
           <VariableType>Float</VariableType>
-          <Address>[[[[LocalPlayer]+30]+228]+B80]+B4</Address>
+          <Address>[[[[LocalPlayer]+30]+228]+B90]+B4</Address>
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
@@ -146,9 +148,10 @@
           8:Level 8
           9:Level 9 (MAX)
 </DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
           <Color>FFC0CB</Color>
           <VariableType>2 Bytes</VariableType>
-          <Address>[[[[[[LocalPlayer]+30]+228]+280]+870]+F0]+10</Address>
+          <Address>[[[[[[LocalPlayer]+30]+228]+280]+8A0]+F0]+10</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>3020</ID>
@@ -163,9 +166,10 @@
           8:Level 8
           9:Level 9 (MAX)
 </DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
           <Color>FFC0CB</Color>
           <VariableType>2 Bytes</VariableType>
-          <Address>[[[[[[LocalPlayer]+30]+228]+280]+870]+F0]+28</Address>
+          <Address>[[[[[[LocalPlayer]+30]+228]+280]+8A0]+F0]+28</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>3030</ID>
@@ -180,9 +184,10 @@
           8:Level 8
           9:Level 9 (MAX)
 </DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
           <Color>FFC0CB</Color>
           <VariableType>2 Bytes</VariableType>
-          <Address>[[[[[[LocalPlayer]+30]+228]+280]+870]+F0]+40</Address>
+          <Address>[[[[[[LocalPlayer]+30]+228]+280]+8A0]+F0]+40</Address>
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
@@ -218,9 +223,10 @@
         <CheatEntry>
           <ID>4020</ID>
           <Description>"Run While Downed [Value à 100]"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
           <Color>FFC0CB</Color>
           <VariableType>Byte</VariableType>
-          <Address>[[[LocalPlayer]+30]+228]+540</Address>
+          <Address>[[[LocalPlayer]+30]+228]+538</Address>
           <Hotkeys>
             <Hotkey>
               <Action>Set Value</Action>
@@ -236,9 +242,9 @@
           <ID>113989</ID>
           <Description>"Team Id [Client Sided]"</Description>
           <ShowAsSigned>0</ShowAsSigned>
-		  <Color>FFC0CB</Color>
+          <Color>FFC0CB</Color>
           <VariableType>4 Bytes</VariableType>
-          <Address>[[[LocalPlayer]+30]+228]+333A</Address>
+          <Address>[[[LocalPlayer]+30]+228]+32A</Address>
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
