@@ -3,7 +3,7 @@
   <CheatEntries>
     <CheatEntry>
       <ID>113988</ID>
-      <Description>"Mis à jour pour la Saison 12 Par La Mona!! 🍃"</Description>
+      <Description>"Mis à jour pour la Saison 13 Par La Mona! 🍃"</Description>
       <Color>FF69B4</Color>
       <GroupHeader>1</GroupHeader>
     </CheatEntry>
@@ -84,34 +84,70 @@
           <Description>"Infinite Abilities"</Description>
           <Color>FFC0CB</Color>
           <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>[ENABLE]
- 
-            aobscanmodule(INJECT,MHUR.exe,44 29 59 38 44 8B 8F C0 00 00 00)
-            alloc(newmem,$1000,INJECT)
-     
-            label(code)
-            label(return)
-     
-            newmem:
-            mov [rcx+38],(float)1
-            jmp return
-     
-            code:
-     
-            INJECT:
-            jmp newmem
-            nop 6
-            return:
-            registersymbol(INJECT)
-     
-            [DISABLE]
-     
-            INJECT:
-            db 44 29 59 38 44 8B 8F C0 00 00 00
-     
-            unregistersymbol(INJECT)
-            dealloc(newmem)
-          
+          <AssemblerScript>{ Game   : MHUR.exe
+  Version:
+  Date   : 2025-09-24
+  Author : verti
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MHUR.exe,44 29 59 38 44 8B 8F D8 00 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  add [rcx+38],r11d
+  mov r9d,[rdi+000000D8]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 6
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 44 29 59 38 44 8B 8F D8 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MHUR.exe+3C031EF
+
+MHUR.exe+3C031D7: 49 03 C9              - add rcx,r9
+MHUR.exe+3C031DA: 38 19                 - cmp [rcx],bl
+MHUR.exe+3C031DC: 74 0A                 - je MHUR.exe+3C031E8
+MHUR.exe+3C031DE: 8B 41 6C              - mov eax,[rcx+6C]
+MHUR.exe+3C031E1: 83 F8 FF              - cmp eax,-01
+MHUR.exe+3C031E4: 75 EA                 - jne MHUR.exe+3C031D0
+MHUR.exe+3C031E6: EB 05                 - jmp MHUR.exe+3C031ED
+MHUR.exe+3C031E8: 83 F8 FF              - cmp eax,-01
+MHUR.exe+3C031EB: 75 02                 - jne MHUR.exe+3C031EF
+MHUR.exe+3C031ED: 33 C9                 - xor ecx,ecx
+// ---------- INJECTING HERE ----------
+MHUR.exe+3C031EF: 44 29 59 38           - sub [rcx+38],r11d
+// ---------- DONE INJECTING  ----------
+MHUR.exe+3C031F3: 44 8B 8F D8 00 00 00  - mov r9d,[rdi+000000D8]
+MHUR.exe+3C031FA: 44 2B 8F 04 01 00 00  - sub r9d,[rdi+00000104]
+MHUR.exe+3C03201: 74 4B                 - je MHUR.exe+3C0324E
+MHUR.exe+3C03203: 48 63 8F 18 01 00 00  - movsxd  rcx,dword ptr [rdi+00000118]
+MHUR.exe+3C0320A: 48 8D 97 08 01 00 00  - lea rdx,[rdi+00000108]
+MHUR.exe+3C03211: 48 8B 42 08           - mov rax,[rdx+08]
+MHUR.exe+3C03215: 48 FF C9              - dec rcx
+MHUR.exe+3C03218: 48 23 CE              - and rcx,rsi
+MHUR.exe+3C0321B: 48 85 C0              - test rax,rax
+MHUR.exe+3C0321E: 48 0F 45 D0           - cmovne rdx,rax
+}
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
@@ -125,7 +161,7 @@
           <ShowAsSigned>0</ShowAsSigned>
           <Color>FFC0CB</Color>
           <VariableType>Float</VariableType>
-          <Address>[[[[LocalPlayer]+30]+228]+B90]+B4</Address>
+          <Address>[[[[LocalPlayer]+30]+228]+B98]+B4</Address>
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
@@ -151,7 +187,7 @@
           <ShowAsSigned>0</ShowAsSigned>
           <Color>FFC0CB</Color>
           <VariableType>2 Bytes</VariableType>
-          <Address>[[[[[[LocalPlayer]+30]+228]+280]+8A0]+F0]+10</Address>
+          <Address>[[[[[[LocalPlayer]+30]+228]+280]+8A8]+108]+10</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>3020</ID>
@@ -169,7 +205,7 @@
           <ShowAsSigned>0</ShowAsSigned>
           <Color>FFC0CB</Color>
           <VariableType>2 Bytes</VariableType>
-          <Address>[[[[[[LocalPlayer]+30]+228]+280]+8A0]+F0]+28</Address>
+          <Address>[[[[[[LocalPlayer]+30]+228]+280]+8A8]+108]+28</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>3030</ID>
@@ -187,7 +223,7 @@
           <ShowAsSigned>0</ShowAsSigned>
           <Color>FFC0CB</Color>
           <VariableType>2 Bytes</VariableType>
-          <Address>[[[[[[LocalPlayer]+30]+228]+280]+8A0]+F0]+40</Address>
+          <Address>[[[[[[LocalPlayer]+30]+228]+280]+8A8]+108]+40</Address>
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
@@ -206,6 +242,7 @@
           75:Three Quarters
           100:Full (Ready)
 </DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
           <Color>FFC0CB</Color>
           <VariableType>Float</VariableType>
           <Address>[[[LocalPlayer]+30]+228]+8F8</Address>
@@ -226,7 +263,7 @@
           <ShowAsSigned>0</ShowAsSigned>
           <Color>FFC0CB</Color>
           <VariableType>Byte</VariableType>
-          <Address>[[[LocalPlayer]+30]+228]+538</Address>
+          <Address>[[[LocalPlayer]+30]+228]+540</Address>
           <Hotkeys>
             <Hotkey>
               <Action>Set Value</Action>
@@ -249,7 +286,12 @@
       </CheatEntries>
     </CheatEntry>
   </CheatEntries>
-  <UserdefinedSymbols/>
+  <UserdefinedSymbols>
+    <SymbolEntry>
+      <Name>speedhack_wantedspeed</Name>
+      <Address>20958E80000</Address>
+    </SymbolEntry>
+  </UserdefinedSymbols>
   <LuaScript> 
 PROCESS_NAME = 'MHUR.exe'
 
