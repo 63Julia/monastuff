@@ -149,6 +149,84 @@ MHUR.exe+3C0321B: 48 85 C0              - test rax,rax
 MHUR.exe+3C0321E: 48 0F 45 D0           - cmovne rdx,rax
 }
 </AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337212300</ID>
+              <Description>"Infinite Abilities [OLD VER]"</Description>
+			   <Color>FFC0CB</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game : MHUR
+Version:
+Date : 2025-10-1
+Author : verti
+
+This script does blah blah blah
+}
+
+[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+
+
+aobscanmodule(InfAbilities,MHUR.exe,8B 40 34 41 8B 09) // should be unique
+alloc(newmem,$1000,InfAbilities)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+mov [rax+34],(float)9
+mov ecx,[r9]
+jmp return
+
+InfAbilities:
+jmp newmem
+nop
+return:
+registersymbol(InfAbilities)
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+InfAbilities:
+db 8B 40 34 41 8B 09
+
+unregistersymbol(InfAbilities)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MHUR.exe+3CCFC66
+
+MHUR.exe+3CCFC40: 8B 40 08 - mov eax,[rax+08]
+MHUR.exe+3CCFC43: C1 E8 1D - shr eax,1D
+MHUR.exe+3CCFC46: A8 01 - test al,01
+MHUR.exe+3CCFC48: 0F 85 34 01 00 00 - jne MHUR.exe+3CCFD82
+MHUR.exe+3CCFC4E: 40 0F B6 D7 - movzx edx,dil
+MHUR.exe+3CCFC52: 48 89 74 24 38 - mov [rsp+38],rsi
+MHUR.exe+3CCFC57: 49 8B C8 - mov rcx,r8
+MHUR.exe+3CCFC5A: E8 F1 E7 F1 FF - call MHUR.exe+3BEE450
+MHUR.exe+3CCFC5F: 4C 8B C8 - mov r9,rax
+MHUR.exe+3CCFC62: 0F B6 50 0C - movzx edx,byte ptr [rax+0C]
+// ---------- INJECTING HERE ----------
+MHUR.exe+3CCFC66: 8B 40 34 - mov eax,[rax+34]
+// ---------- DONE INJECTING ----------
+MHUR.exe+3CCFC69: 41 8B 09 - mov ecx,[r9]
+MHUR.exe+3CCFC6C: 66 0F 6E D0 - movd xmm2,eax
+MHUR.exe+3CCFC70: 66 0F 6E C9 - movd xmm1,ecx
+MHUR.exe+3CCFC74: 0F 5B D2 - cvtdq2ps xmm2,xmm2
+MHUR.exe+3CCFC77: 0F 5B C9 - cvtdq2ps xmm1,xmm1
+MHUR.exe+3CCFC7A: 0F 28 C2 - movaps xmm0,xmm2
+MHUR.exe+3CCFC7D: 84 D2 - test dl,dl
+MHUR.exe+3CCFC7F: 74 0C - je MHUR.exe+3CCFC8D
+MHUR.exe+3CCFC81: F3 0F 5E C1 - divss xmm0,xmm1
+MHUR.exe+3CCFC85: F3 0F 59 05 77 34 E4 00 - mulss xmm0,[MHUR.exe+4B13104]
+}
+
+
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
         </CheatEntry>
         <CheatEntry>
           <ID>2030</ID>
@@ -224,6 +302,156 @@ MHUR.exe+3C0321E: 48 0F 45 D0           - cmovne rdx,rax
           <Color>FFC0CB</Color>
           <VariableType>2 Bytes</VariableType>
           <Address>[[[[[[LocalPlayer]+30]+228]+280]+8A8]+108]+40</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337212298</ID>
+          <Description>"TOUT Niveau 9 [CARBO]"</Description>
+		  <Color>FFC0CB</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game : MHUR
+Version:
+Date : 2025-10-1
+Author : verti
+
+This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MHUR.exe,89 44 24 20 E8 38 00 00 00 4C) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+mov [rsp+20],9
+call MHUR.exe+3B8AD10
+jmp return
+
+INJECT:
+jmp newmem
+nop 4
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+db 89 44 24 20 E8 38 00 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MHUR.exe+3B8ACCF
+
+MHUR.exe+3B8ACA5: 89 44 24 20 - mov [rsp+20],eax
+MHUR.exe+3B8ACA9: E8 12 FD 3C 00 - call MHUR.exe+3F5A9C0
+MHUR.exe+3B8ACAE: 8B 43 10 - mov eax,[rbx+10]
+MHUR.exe+3B8ACB1: 4C 8D 44 24 50 - lea r8,[rsp+50]
+MHUR.exe+3B8ACB6: 44 88 7C 24 38 - mov [rsp+38],r15b
+MHUR.exe+3B8ACBB: 4D 8B CC - mov r9,r12
+MHUR.exe+3B8ACBE: 40 88 74 24 30 - mov [rsp+30],sil
+MHUR.exe+3B8ACC3: 41 0F B6 D6 - movzx edx,r14b
+MHUR.exe+3B8ACC7: 44 88 6C 24 28 - mov [rsp+28],r13b
+MHUR.exe+3B8ACCC: 48 8B CD - mov rcx,rbp
+// ---------- INJECTING HERE ----------
+MHUR.exe+3B8ACCF: 89 44 24 20 - mov [rsp+20],eax
+// ---------- DONE INJECTING ----------
+MHUR.exe+3B8ACD3: E8 38 00 00 00 - call MHUR.exe+3B8AD10
+MHUR.exe+3B8ACD8: 4C 8B A4 24 D8 00 00 00 - mov r12,[rsp+000000D8]
+MHUR.exe+3B8ACE0: 48 8B B4 24 C8 00 00 00 - mov rsi,[rsp+000000C8]
+MHUR.exe+3B8ACE8: EB 02 - jmp MHUR.exe+3B8ACEC
+MHUR.exe+3B8ACEA: 32 C0 - xor al,al
+MHUR.exe+3B8ACEC: 4C 8B BC 24 90 00 00 00 - mov r15,[rsp+00000090]
+MHUR.exe+3B8ACF4: 48 81 C4 98 00 00 00 - add rsp,00000098
+MHUR.exe+3B8ACFB: 41 5E - pop r14
+MHUR.exe+3B8ACFD: 41 5D - pop r13
+MHUR.exe+3B8ACFF: 5D - pop rbp
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>113990</ID>
+      <Description>"--- Modification Du Jeu --- 🍃"</Description>
+      <Color>90EE90</Color>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1337212297</ID>
+          <Description>"Tickets De Perso Infini [Change Pas De Perso]"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+		  <Color>FFC0CB</Color>
+          <AssemblerScript>{ Game   : MHUR.exe
+  Version: 
+  Date   : 2025-10-1
+  Author : verti
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,MHUR.exe,41 89 96 18 0A 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+mov [r14+00000A18],(int)3
+  jmp return
+code:
+  mov [r14+00000A18],edx
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 41 89 96 18 0A 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MHUR.exe+10C491D
+
+MHUR.exe+10C48F7: BA 01 00 00 00           - mov edx,00000001
+MHUR.exe+10C48FC: 48 8B CB                 - mov rcx,rbx
+MHUR.exe+10C48FF: FF 50 08                 - call qword ptr [rax+08]
+MHUR.exe+10C4902: 90                       - nop 
+MHUR.exe+10C4903: 48 83 C6 18              - add rsi,18
+MHUR.exe+10C4907: 48 8D 46 F8              - lea rax,[rsi-08]
+MHUR.exe+10C490B: 49 3B C4                 - cmp rax,r12
+MHUR.exe+10C490E: 0F 85 8C FE FF FF        - jne MHUR.exe+10C47A0
+MHUR.exe+10C4914: 49 8B 07                 - mov rax,[r15]
+MHUR.exe+10C4917: 8B 90 A0 00 00 00        - mov edx,[rax+000000A0]
+// ---------- INJECTING HERE ----------
+MHUR.exe+10C491D: 41 89 96 18 0A 00 00     - mov [r14+00000A18],edx
+// ---------- DONE INJECTING  ----------
+MHUR.exe+10C4924: 41 83 BE E8 08 00 00 00  - cmp dword ptr [r14+000008E8],00
+MHUR.exe+10C492C: 7F 09                    - jg MHUR.exe+10C4937
+MHUR.exe+10C492E: 49 8B CE                 - mov rcx,r14
+MHUR.exe+10C4931: E8 EA 03 FF FF           - call MHUR.exe+10B4D20
+MHUR.exe+10C4936: 90                       - nop 
+MHUR.exe+10C4937: 49 8B CF                 - mov rcx,r15
+MHUR.exe+10C493A: 48 8B 9C 24 C0 00 00 00  - mov rbx,[rsp+000000C0]
+MHUR.exe+10C4942: 48 83 C4 70              - add rsp,70
+MHUR.exe+10C4946: 41 5F                    - pop r15
+MHUR.exe+10C4948: 41 5E                    - pop r14
+}
+</AssemblerScript>
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
