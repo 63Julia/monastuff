@@ -81,7 +81,7 @@
       <CheatEntries>
         <CheatEntry>
           <ID>2010</ID>
-          <Description>"Infinite Abilities"</Description>
+          <Description>"Infinite Abilities [V2]"</Description>
           <Color>FFC0CB</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : MHUR.exe
@@ -152,8 +152,8 @@ MHUR.exe+3C0321E: 48 0F 45 D0           - cmovne rdx,rax
           <CheatEntries>
             <CheatEntry>
               <ID>1337212300</ID>
-              <Description>"Infinite Abilities [OLD VER]"</Description>
-			   <Color>FFC0CB</Color>
+              <Description>"Infinite Abilities [V1]"</Description>
+              <Color>FFC0CB</Color>
               <VariableType>Auto Assembler Script</VariableType>
               <AssemblerScript>{ Game : MHUR
 Version:
@@ -306,7 +306,7 @@ MHUR.exe+3CCFC85: F3 0F 59 05 77 34 E4 00 - mulss xmm0,[MHUR.exe+4B13104]
         <CheatEntry>
           <ID>1337212298</ID>
           <Description>"TOUT Niveau 9 [CARBO]"</Description>
-		  <Color>FFC0CB</Color>
+          <Color>228B22</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game : MHUR
 Version:
@@ -385,8 +385,8 @@ MHUR.exe+3B8ACFF: 5D - pop rbp
         <CheatEntry>
           <ID>1337212297</ID>
           <Description>"Tickets De Perso Infini [Change Pas De Perso]"</Description>
+          <Color>FFC0CB</Color>
           <VariableType>Auto Assembler Script</VariableType>
-		  <Color>FFC0CB</Color>
           <AssemblerScript>{ Game   : MHUR.exe
   Version: 
   Date   : 2025-10-1
@@ -503,23 +503,189 @@ MHUR.exe+10C4948: 41 5E                    - pop r14
             </Hotkey>
           </Hotkeys>
         </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1337212301</ID>
+      <Description>"[ Attacking Teammates Section ]"</Description>
+      <Color>90EE90</Color>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
         <CheatEntry>
-          <ID>113989</ID>
-          <Description>"Team Id [Client Sided]"</Description>
-          <ShowAsSigned>0</ShowAsSigned>
-          <Color>FFC0CB</Color>
-          <VariableType>4 Bytes</VariableType>
-          <Address>[[[LocalPlayer]+30]+228]+32A</Address>
+          <ID>1001</ID>
+          <Description>"Activate attacks on teammates"</Description>
+          <Color>228B22</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+{$lua}
+if syntaxcheck == false then
+  local disableEntry = getAddressList().getMemoryRecordByDescription('Disable attacks on teammates')
+  if disableEntry ~= nil then
+    disableEntry.Active = false
+  end
+end
+{$asm}
+
+{ Game   : MHUR.exe
+  Version:
+  Date   : 2025-11-02
+  Author : verti
+
+  This script does blah blah blah
+}
+
+aobscanmodule(INJECT,MHUR.exe,0F B6 80 14 04 00 00) // exact original bytes
+alloc(newmem,$1000,INJECT)
+
+label(return_here)
+
+newmem:
+
+  mov byte ptr [rax+00000414], 1
+
+  movzx eax, byte ptr [rax+00000414]
+
+  jmp return_here
+
+INJECT:
+  jmp newmem
+  nop
+  nop
+
+return_here:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 0F B6 80 14 04 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+
+
+{
+// ORIGINAL CODE - INJECTION POINT: MHUR.exe+3D91CAE
+
+MHUR.exe+3D91C80: 0F 85 A0 00 00 00        - jne MHUR.exe+3D91D26
+MHUR.exe+3D91C86: 48 8B 8F D8 1B 00 00     - mov rcx,[rdi+00001BD8]
+MHUR.exe+3D91C8D: E8 BE 22 E1 FF           - call MHUR.exe+3BA3F50
+MHUR.exe+3D91C92: 40 38 B0 20 0C 00 00     - cmp [rax+00000C20],sil
+MHUR.exe+3D91C99: 74 13                    - je MHUR.exe+3D91CAE
+MHUR.exe+3D91C9B: 48 8B 88 38 0C 00 00     - mov rcx,[rax+00000C38]
+MHUR.exe+3D91CA2: 48 85 C9                 - test rcx,rcx
+MHUR.exe+3D91CA5: 74 07                    - je MHUR.exe+3D91CAE
+MHUR.exe+3D91CA7: E8 04 2A 00 00           - call MHUR.exe+3D946B0
+MHUR.exe+3D91CAC: EB 07                    - jmp MHUR.exe+3D91CB5
+// ---------- INJECTING HERE ----------
+MHUR.exe+3D91CAE: 0F B6 80 14 04 00 00     - movzx eax,byte ptr [rax+00000414]
+// ---------- DONE INJECTING  ----------
+MHUR.exe+3D91CB5: 48 8B 8F D8 1B 00 00     - mov rcx,[rdi+00001BD8]
+MHUR.exe+3D91CBC: 88 87 F8 1A 00 00        - mov [rdi+00001AF8],al
+MHUR.exe+3D91CC2: E8 89 22 E1 FF           - call MHUR.exe+3BA3F50
+MHUR.exe+3D91CC7: 48 8B 88 20 03 00 00     - mov rcx,[rax+00000320]
+MHUR.exe+3D91CCE: 48 89 8F EC 1A 00 00     - mov [rdi+00001AEC],rcx
+MHUR.exe+3D91CD5: 40 38 B7 F8 1A 00 00     - cmp [rdi+00001AF8],sil
+MHUR.exe+3D91CDC: 74 48                    - je MHUR.exe+3D91D26
+MHUR.exe+3D91CDE: 48 63 87 88 1B 00 00     - movsxd  rax,dword ptr [rdi+00001B88]
+MHUR.exe+3D91CE5: 48 8B 8F 80 1B 00 00     - mov rcx,[rdi+00001B80]
+MHUR.exe+3D91CEC: 48 8D 14 C5 00 00 00 00  - lea rdx,[rax*8+00000000]
+}
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1002</ID>
+          <Description>"Disable attacks on teammates"</Description>
+          <Color>FF69B4</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+{$lua}
+if syntaxcheck == false then
+  local enableEntry = getAddressList().getMemoryRecordByDescription('Activate attacks on teammates')
+  if enableEntry ~= nil then
+    enableEntry.Active = false
+  end
+end
+{$asm}
+
+
+{ Game   : MHUR.exe
+  Version:
+  Date   : 2025-11-02
+  Author : verti
+
+  This script does blah blah blah
+}
+
+aobscanmodule(INJECT,MHUR.exe,0F B6 80 14 04 00 00) // exact original bytes
+alloc(newmem,$1000,INJECT)
+
+label(return_here)
+
+newmem:
+
+  mov byte ptr [rax+00000414], 0
+
+  movzx eax, byte ptr [rax+00000414]
+
+  jmp return_here
+
+INJECT:
+  jmp newmem
+  nop
+  nop
+
+return_here:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 0F B6 80 14 04 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+
+
+{
+// ORIGINAL CODE - INJECTION POINT: MHUR.exe+3D91CAE
+
+MHUR.exe+3D91C80: 0F 85 A0 00 00 00        - jne MHUR.exe+3D91D26
+MHUR.exe+3D91C86: 48 8B 8F D8 1B 00 00     - mov rcx,[rdi+00001BD8]
+MHUR.exe+3D91C8D: E8 BE 22 E1 FF           - call MHUR.exe+3BA3F50
+MHUR.exe+3D91C92: 40 38 B0 20 0C 00 00     - cmp [rax+00000C20],sil
+MHUR.exe+3D91C99: 74 13                    - je MHUR.exe+3D91CAE
+MHUR.exe+3D91C9B: 48 8B 88 38 0C 00 00     - mov rcx,[rax+00000C38]
+MHUR.exe+3D91CA2: 48 85 C9                 - test rcx,rcx
+MHUR.exe+3D91CA5: 74 07                    - je MHUR.exe+3D91CAE
+MHUR.exe+3D91CA7: E8 04 2A 00 00           - call MHUR.exe+3D946B0
+MHUR.exe+3D91CAC: EB 07                    - jmp MHUR.exe+3D91CB5
+// ---------- INJECTING HERE ----------
+MHUR.exe+3D91CAE: 0F B6 80 14 04 00 00     - movzx eax,byte ptr [rax+00000414]
+// ---------- DONE INJECTING  ----------
+MHUR.exe+3D91CB5: 48 8B 8F D8 1B 00 00     - mov rcx,[rdi+00001BD8]
+MHUR.exe+3D91CBC: 88 87 F8 1A 00 00        - mov [rdi+00001AF8],al
+MHUR.exe+3D91CC2: E8 89 22 E1 FF           - call MHUR.exe+3BA3F50
+MHUR.exe+3D91CC7: 48 8B 88 20 03 00 00     - mov rcx,[rax+00000320]
+MHUR.exe+3D91CCE: 48 89 8F EC 1A 00 00     - mov [rdi+00001AEC],rcx
+MHUR.exe+3D91CD5: 40 38 B7 F8 1A 00 00     - cmp [rdi+00001AF8],sil
+MHUR.exe+3D91CDC: 74 48                    - je MHUR.exe+3D91D26
+MHUR.exe+3D91CDE: 48 63 87 88 1B 00 00     - movsxd  rax,dword ptr [rdi+00001B88]
+MHUR.exe+3D91CE5: 48 8B 8F 80 1B 00 00     - mov rcx,[rdi+00001B80]
+MHUR.exe+3D91CEC: 48 8D 14 C5 00 00 00 00  - lea rdx,[rax*8+00000000]
+}
+
+</AssemblerScript>
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
   </CheatEntries>
-  <UserdefinedSymbols>
-    <SymbolEntry>
-      <Name>speedhack_wantedspeed</Name>
-      <Address>20958E80000</Address>
-    </SymbolEntry>
-  </UserdefinedSymbols>
+  <UserdefinedSymbols/>
   <LuaScript> 
 PROCESS_NAME = 'MHUR.exe'
 
